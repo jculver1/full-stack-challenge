@@ -5,7 +5,6 @@ The application can be viewed here:
 https://company-inex.herokuapp.com/
 
 
-
 # Frontend Application:
 
 ### Steps:
