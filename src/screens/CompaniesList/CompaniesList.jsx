@@ -1,11 +1,14 @@
 import React ,{useState, useEffect} from 'react';
 import './CompaniesList.scss'
 import CompanyTile from '../../components/CompanyTile/CompanyTile'
+import CreateNewCompany from '../CreateNewCompany/CreateNewCompany'
+import { Button, Modal } from 'react-bootstrap';
 
 const CompaniesList = () => {
 
     const baseUrl = 'http://localhost:3001/'
     const [companies, setCompanies] = useState([])
+    const [addCompanyModalOpen, setAddCompanyModalOpen] = useState(false)
 
 
     const getCompanyList = () => {
@@ -36,7 +39,26 @@ const CompaniesList = () => {
                    )
                })
            }
-          <button type="button" class="btn btn-primary m-2">Add Company</button>
+            <Button variant='primary' className="btn m-2" data-toggle="modal" data-target=".bd-example-modal-lg" onClick={()  => setAddCompanyModalOpen(true)}>Add Company</Button>
+            <Modal
+                size="lg"
+                centered
+                aria-labelledby="contained-modal-title-vcenter"
+                show={addCompanyModalOpen}
+                onHide={() => setAddCompanyModalOpen(false)}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Create A New Company</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <CreateNewCompany/>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary">Save</Button>
+                </Modal.Footer>
+            </Modal>
        </div>
     );
 }
