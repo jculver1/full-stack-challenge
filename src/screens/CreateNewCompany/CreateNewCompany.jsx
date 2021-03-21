@@ -13,12 +13,7 @@ const CompanyTile = (props) => {
     }
 
     const submitNewCompany = () => {
-        // const form = e.currentTarget;
-        // if (form.checkValidity() === false) {
-        //     e.preDefault()
-        //     e.stopPropagation()
-        // }
-        if (newCompany.name && newCompany.city && newCompany.state  && newCompany.description){
+        if (newCompany.name && newCompany.city && newCompany.state  && newCompany.description) {
             fetch(props.baseUrl + 'company', {
                 method: 'post',
                 headers: {
@@ -29,7 +24,7 @@ const CompanyTile = (props) => {
             })
             .then(res => res.json())
             .then(res => {
-                if(res){
+                if (res) {
                     console.log(res)
                     props.setCompanies([...props.companies, newCompany])
                     setNewCompany({})
@@ -39,9 +34,6 @@ const CompanyTile = (props) => {
                 console.log(err)
             })
         }
-            // props.setAddCompanyModalOpen(false)
-        // }
-        // setFormValidated(true);  
     }
 
     return (

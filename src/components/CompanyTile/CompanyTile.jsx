@@ -1,7 +1,19 @@
-import React from 'react';
-import './CompanyTile.scss'
+import React, {useState} from 'react';
+import './CompanyTile.scss';
+import history from '../../components/history';
+import { Link } from "react-router-dom";
 
 const CompanyTile = (props) => {
+
+    const [details, setDetails] = useState(
+        {
+            id: props.company.id,
+            name: props.company.name, 
+            city: props.company.city, 
+            state: props.company.state, 
+            description: props.company.description, 
+            date: props.company.founded_date
+        })
 
     return ( 
         <div className="card">
@@ -10,7 +22,15 @@ const CompanyTile = (props) => {
                     <h4>{props.company.name} | </h4>
                     <h5>{props.company.city}, {props.company.state}</h5>
                 </div>
-                <button type="button" class="btn btn-link">Link</button>
+                <Link
+                    className="btn btn-primary"
+                    to={{
+                    pathname: "/Details",
+                    details
+                    }}
+                >
+                    More
+                </Link>
             </div>
             <div class="card-body">
                 <p class="card-text">{props.company.description}</p>
