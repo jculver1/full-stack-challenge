@@ -10,7 +10,6 @@ const CompaniesList = () => {
     const [companies, setCompanies] = useState([])
     const [addCompanyModalOpen, setAddCompanyModalOpen] = useState(false)
 
-
     const getCompanyList = () => {
         fetch(baseUrl + 'companies', {
             method: 'get',
@@ -23,6 +22,7 @@ const CompaniesList = () => {
             console.log(err)
         })
     }
+
 
     useEffect(() => {
         getCompanyList()
@@ -53,11 +53,8 @@ const CompaniesList = () => {
                     <Modal.Title>Create A New Company</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <CreateNewCompany/>
+                    <CreateNewCompany baseUrl={baseUrl} setCompanies={setCompanies} companies={companies} setAddCompanyModalOpen={setAddCompanyModalOpen}/>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary">Save</Button>
-                </Modal.Footer>
             </Modal>
        </div>
     );

@@ -1,50 +1,112 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './CreateNewCompany.scss'
-import { Form, Col, Row, Container } from 'react-bootstrap';
+import { Form, Col, Row, Container, Button } from 'react-bootstrap';
 
 const CompanyTile = (props) => {
-    return ( 
+    const [newCompany, setNewCompany] = useState({name: null, city: null, state: null, description: null, founded_date:null})
+    const [formValidated, setFormValidated] = useState(false)
+
+    const newCompanyFormData = (e, key) => {
+        let updateCompanyData = newCompany
+        updateCompanyData[key]= e.target.value
+        setNewCompany(updateCompanyData)
+    }
+
+    const submitNewCompany = () => {
+        // const form = e.currentTarget;
+        // if (form.checkValidity() === false) {
+        //     e.preDefault()
+        //     e.stopPropagation()
+        // }
+        if (newCompany.name && newCompany.city && newCompany.state  && newCompany.description){
+            fetch(props.baseUrl + 'company', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(newCompany)
+            })
+            .then(res => res.json())
+            .then(res => {
+                if(res){
+                    console.log(res)
+                    props.setCompanies([...props.companies, newCompany])
+                    setNewCompany({})
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        }
+            // props.setAddCompanyModalOpen(false)
+        // }
+        // setFormValidated(true);  
+    }
+
+    return (
         <Container>
+            <Form>
             <Row className='p-2'>
-                <Form.Group>
+                <Form.Group controlId="validationCustom01">
                     <Form.Label>Company Name:</Form.Label>
                     <Form.Control
+                        id='company-name'
                         required
                         type="text"
-                        placeholder="Company Name"
+                        onChange={e => newCompanyFormData(e, 'name')}
                     />
                 </Form.Group>
             </Row>
             <Row className='p-2'>
                 <Col xs={6} md={4}>
-                    <Form.Group>
+                    <Form.Group controlId="validationCustom02">
                         <Form.Label>City:</Form.Label>
                         <Form.Control
+                            id='city'
                             required
+                            type="text"
+                            onChange={e => newCompanyFormData(e, 'city')}
                         />
                     </Form.Group>
                 </Col>
                 <Col xs={6} md={4}>
-                    <Form.Group>
+                    <Form.Group controlId="validationCustom03">
                         <Form.Label>State:</Form.Label>
                         <Form.Control
+                            id='state'
                             required
+                            type="text"
+                            onChange={e => newCompanyFormData(e, 'state')}
                         />
                     </Form.Group>
                 </Col>
                 <Col xs={6} md={4}>
-                    <Form.Group>
+                    <Form.Group controlId="validationCustom04">
                         <Form.Label>Founded Date:</Form.Label>
-                        <Form.Control type="date" name="foundedDate" />
+                        <Form.Control
+                            id='date'
+                            type="date" 
+                            name="foundedDate"
+                            onChange={e => newCompanyFormData(e, 'founded_date')}
+                        />
                     </Form.Group>
                 </Col>
             </Row>
             <Row className='p-2'>
-                <Form.Group>
+                <Form.Group controlId="validationCustom05">
                     <Form.Label>Description</Form.Label>
-                    <Form.Control as="textarea" aria-label="With textarea" />
+                    <Form.Control 
+                        required
+                        id='description'
+                        as="textarea" 
+                        aria-label="With textarea" 
+                        onChange={e => newCompanyFormData(e, 'description')}
+                    />
                 </Form.Group>
             </Row>
+            <Button id='submit-button' type="submit" onClick={() => submitNewCompany()}>Save</Button>
+            </Form>
         </Container>
      );
 }
