@@ -3,10 +3,10 @@ import './CompanyDetails.scss'
 import EditCompanyModal from '../../components/EditCompanyModal/EditCompanyModal'
 import AddFounderModal from '../../components/AddFounderModal/AddFounderModal'
 import { Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 const CompanyDetails = (props) => {
-  const baseUrl = 'http://localhost:3001/'
+  const baseUrl = 'https://ancient-waters-80489.herokuapp.com/'
 
   const { name, city, state, description, date, id } = (props.location && props.location.details) || {}
   const [companyDetails, setCompanyDetails] = useState({ id: id, name: name, city: city, state: state, description: description, founded_date: date })
@@ -86,7 +86,7 @@ const CompanyDetails = (props) => {
         <div className='d-inline-flex align-items-center justify-content-center'>
           <Button className='m-2' onClick={() => setEditCompany(true)}>Edit</Button>
           <Link
-            onClick={() => deleteCompany()}
+            onClick={(e) => deleteCompany(e)}
             className='btn btn-primary m-2'
             to={{
               pathname: '/'
