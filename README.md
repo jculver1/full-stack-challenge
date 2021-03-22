@@ -10,9 +10,9 @@ https://company-inex.herokuapp.com/
 
 ### Steps:
 
-git clone git@github.com:jculver1/company_index_frontend.git
+clone this repo
 
-cd company_index_frontend
+cd full-stack-challenge
 
 npm install
 
