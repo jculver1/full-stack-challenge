@@ -21,22 +21,6 @@ navigate to localhost:3000
 
 
 
-# Frontend Application:
-
-### Steps:
-
-git clone git@github.com:jculver1/company_index_frontend.git
-
-cd company_index_frontend
-
-npm install
-
-npm start
-
-navigate to localhost:3000
-
-
-
 # Backend Application: (You don't need to run to accss the UI)
 
 ### Repository to the backend: 
