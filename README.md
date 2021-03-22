@@ -8,9 +8,6 @@ https://company-inex.herokuapp.com/
 
 # Frontend Application:
 
-### Repository to the frontend: 
-https://github.com/jculver1/company_index_frontend
-
 ### Steps:
 
 git clone git@github.com:jculver1/company_index_frontend.git
