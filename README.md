@@ -9,7 +9,7 @@ https://company-inex.herokuapp.com/
 
 ### Steps:
 
-clone this repo
+clone this repo: https://github.com/jculver1/full-stack-challenge/tree/code-challenge-jessica-culver
 
 cd full-stack-challenge
 
