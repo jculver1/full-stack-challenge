@@ -26,7 +26,7 @@ const CompaniesList = () => {
 
     useEffect(() => {
         getCompanyList()
-    }, [])
+    },[])
 
     return (
        <div className='companylist-container'>

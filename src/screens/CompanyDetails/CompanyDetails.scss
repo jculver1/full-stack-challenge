@@ -1,13 +1,14 @@
 .details-container{
     border: 2px solid black;
     margin: 5rem;
+    height: 80vh;
     .line-break{
         height: 3rem;
         border-left: 1px solid black;
     }
-    .founder-container{
+    .founders-list{
         border: 2px solid black;
-        width: 100%;
+        min-height: 10vh;
     }
 
 }
